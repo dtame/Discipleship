@@ -65,7 +65,7 @@ namespace WandaWebAdmin.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Pour nous contacter:";
 
             return View();
         }
