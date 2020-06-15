@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Linq;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using WandaWebAdmin.Data;
-using WandaWebAdmin.Helpers;
 using WandaWebAdmin.Models;
 using WandaWebAdmin.Models.ViewModels;
 using WandaWebAdmin.Services;
+using WandaWebAdmin.Services.Contracts;
 
 namespace WandaWebAdmin.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IVimeoService _vimeoService;
-        public HomeController(IVimeoService vimeoService)
+        private readonly IEmailService _emailService;
+        public HomeController(IVimeoService vimeoService, IEmailService emailService)
         {
             _vimeoService = vimeoService;
+            _emailService = emailService;
         }
 
         
@@ -37,10 +33,23 @@ namespace WandaWebAdmin.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Prayer()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Prayer(PrayerRequestViewModel model)
+        {
+            if (model.IsValid)
+            {
+                model.Body = $"<p>Sender: {model.From}</p>" + model.Body;
+                _emailService.SendEmail(model.Subject, model.Body, EmailAddresses.Prayer);
+            }
+            return View(model);
+        }
+
         //[HttpGet]
         //public IActionResult SyncVideos()
         //{

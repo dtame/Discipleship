@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WandaWebAdmin.Models.ViewModels;
 
-namespace WandaWebAdmin.Services
+namespace WandaWebAdmin.Services.Contracts
 {
     public interface IVimeoService
     {

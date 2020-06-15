@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WandaWebAdmin.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WandaWebAdmin.Models;
+using WandaWebAdmin.Data;
 using WandaWebAdmin.Helpers;
+using WandaWebAdmin.Models;
 using WandaWebAdmin.Services;
+using WandaWebAdmin.Services.Contracts;
 
 namespace WandaWebAdmin
 {
@@ -48,6 +44,7 @@ namespace WandaWebAdmin
             services.AddSingleton(vimeoConfig);
             services.AddTransient<IVimeoHelper, VimeoHelper>();
             services.AddTransient<IVimeoService, VimeoService>();
+            services.AddTransient<IEmailService, EmailService>();
 
             services.AddCors(options => {
                 options.AddPolicy("AllowMyOrigin", 
