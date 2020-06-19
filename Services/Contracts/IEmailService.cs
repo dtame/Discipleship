@@ -9,6 +9,6 @@ namespace WandaWebAdmin.Services.Contracts
 {
     public interface IEmailService
     {
-        bool SendEmail(string subject, string bodyMail, string toEmailAddress);
+        bool SendEmail(string subject, string bodyMail, string from, string toEmailAddress);
     }
 }

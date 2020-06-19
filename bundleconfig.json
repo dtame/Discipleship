@@ -1,9 +1,11 @@
 ﻿[
     {
         "outputFileName": "wwwroot/css/site.min.css",
-        "inputFiles": [
-            "wwwroot/css/site.css"
-        ]
+      "inputFiles": [
+        "wwwroot/css/site.css",
+        "wwwroot/css/mobile.css",
+        "wwwroot/css/tablet.css"
+      ]
     },
     {
         "outputFileName": "wwwroot/js/site.min.js",

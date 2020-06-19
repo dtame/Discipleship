@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Linq;
 using WandaWebAdmin.Models;
 using WandaWebAdmin.Models.ViewModels;
 using WandaWebAdmin.Services;
@@ -25,7 +27,8 @@ namespace WandaWebAdmin.Controllers
 
         public IActionResult Study()
         {
-            return View();
+            var album = _vimeoService.GetAlbumsWithVideos()[1];
+            return View(album);
         }
 
         public IActionResult Faq()
@@ -45,33 +48,11 @@ namespace WandaWebAdmin.Controllers
             if (model.IsValid)
             {
                 model.Body = $"<p>Sender: {model.From}</p>" + model.Body;
-                _emailService.SendEmail(model.Subject, model.Body, EmailAddresses.Prayer);
+                _emailService.SendEmail(model.Subject, model.Body, model.From, EmailAddresses.Infos);
             }
             return View(model);
         }
-
-        //[HttpGet]
-        //public IActionResult SyncVideos()
-        //{
-
-        //    return RedirectToAction("About");
-        //}
-
-        //[EnableCors("AllowMyOrigin")]
-        //[HttpGet]
-        //public JsonResult GetAlbums()
-        //{
-        //    var albums = _vimeoService.GetAlbumsWithVideos();
-        //    return new JsonResult(albums.ToJson());
-        //}
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
+        
         public IActionResult Contact()
         {
             ViewData["Message"] = "Pour nous contacter:";
@@ -93,8 +74,10 @@ namespace WandaWebAdmin.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [EnableCors("AllowMyOrigin")]
+        public IActionResult Play(string code)
         {
+            ViewData["Code"] = code;
             return View();
         }
 

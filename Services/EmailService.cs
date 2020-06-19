@@ -10,26 +10,25 @@ namespace WandaWebAdmin.Services
 {
     public class EmailService : IEmailService
     {
-        public bool SendEmail(string subject, string bodyMail, string toEmailAddress)
+        public bool SendEmail(string subject, string bodyMail, string from, string toEmailAddress)
         {  try
                 {
-                    MailMessage message = new MailMessage();
-                    SmtpClient smtp = new SmtpClient("mail.lechemindudisciple.com");
-                    message.From = new MailAddress(EmailAddresses.PostMaster.Address);
-                    message.To.Add(new MailAddress(toEmailAddress));
-                    message.Subject = subject;
-                    message.IsBodyHtml = true; //to make message body as html  
-                    message.Body = bodyMail;
-                    smtp.Port = 25;
-                    //smtp.Host = "mail.lechemindudisciple.com";
-                    smtp.EnableSsl = true;
-                    smtp.UseDefaultCredentials = false;
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress(EmailAddresses.PostMaster.Address);
+                    mail.To.Add(EmailAddresses.PostMaster.Address);
+                    mail.Subject = subject;
+                    mail.IsBodyHtml = true;
+                    mail.Body = bodyMail;
+
+                    SmtpClient smtp = new SmtpClient("mail.lechemindudisciple.com");                                   
                     smtp.Credentials = new NetworkCredential(EmailAddresses.PostMaster.Address, EmailAddresses.PostMaster.Password);
-                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    smtp.Send(message);
-                    return true;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Port = 8889;
+                    smtp.EnableSsl = false;
+                    smtp.Send(mail);
+                     return true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     return false;
                 }
@@ -44,9 +43,14 @@ namespace WandaWebAdmin.Services
                 return new EmailAddress
                 {
                     Address = "postmaster@lechemindudisciple.com",
-                    Password = "Domnik001"
+                    Password = "Domnik.001"
                 };
             }
+        }
+
+        public static string Infos
+        {
+            get { return "infos@lechemindudisciple.com"; }
         }
 
         public static string Prayer

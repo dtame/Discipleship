@@ -1,0 +1,14 @@
+@model WandaWebAdmin.Models.ViewModels.VideoViewModel
+
+    <div class="col-md-3">
+        <div class="thumbnail">
+            <a asp-area="" asp-controller="Home" asp-action="Play" asp-route-code="@Model.Code">
+                <img src="@Model.Thumbnail.Link" alt="Lights" style="width:100%">
+                <div class="caption">
+                    <p>@Model.Name</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+

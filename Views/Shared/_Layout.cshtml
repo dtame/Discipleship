@@ -8,6 +8,8 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/web.css" />
+        <link rel="stylesheet" href="~/css/tablet.css" />
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     </environment>
     <environment exclude="Development">
@@ -16,21 +18,31 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/web.css" />
+        <link rel="stylesheet" href="~/css/tablet.css" />
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     </environment>
 </head>
 <body>
     <div class="header">
-        <h1 class="logo">Le chemin du chrétien</h1>
-        <hr class="line" />
         <div class="menuContainer">
-            <ul class="menu">
-                <li class="@Html.IsActive("Home", "Index")"><a asp-area="" asp-controller="Home" asp-action="Index">Accueil</a></li>
-                <li class="@Html.IsActive("Home", "Study")"><a asp-area="" asp-controller="Home" asp-action="Study">Étude de la bible</a></li>
-                <li class="@Html.IsActive("Home", "Faq")"><a asp-area="" asp-controller="Home" asp-action="Faq">Questions/Réponses</a></li>
-                <li class="@Html.IsActive("Home", "Prayer")"><a asp-area="" asp-controller="Home" asp-action="Prayer">Prières</a></li>
-                <li class="@Html.IsActive("Home", "Contact")"><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-            </ul>
+            <nav class="navbar">
+                <a class="navbar-brand logo" href="#">Le chemin du chrétien</a>
+                <button class="navbar-toggler test" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </button>
+                <hr class="line" />
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="menu">
+                        <li class="@Html.IsActive("Home", "Index")"><a asp-area="" asp-controller="Home" asp-action="Index">Accueil</a></li>
+                        <li class="@Html.IsActive("Home", "Study")"><a asp-area="" asp-controller="Home" asp-action="Study">Étude de la bible</a></li>
+                        <li class="@Html.IsActive("Home", "Faq")"><a asp-area="" asp-controller="Home" asp-action="Faq">Questions/Réponses</a></li>
+                        <li class="@Html.IsActive("Home", "Prayer")"><a asp-area="" asp-controller="Home" asp-action="Prayer">Prières</a></li>
+                        <li class="@Html.IsActive("Home", "Contact")"><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+
         </div>
     </div>
 

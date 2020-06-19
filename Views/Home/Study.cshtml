@@ -1,7 +1,16 @@
-﻿
+﻿@model WandaWebAdmin.Models.ViewModels.AlbumViewModel
 @{
     ViewData["Title"] = "Study";
 }
+<div class="col-md-12">
+    <h2 style="display: inline-block;" class="pull-left">Étude de la bible</h2>
+    <form style="display:inline-block;" action="Search" method="post">
+        <input type="text" name="searchKey" placeholder="search"/>
+    </form>
+</div>
+<hr />
 
-<h2>Study</h2>
-
+@foreach (var video in Model.Videos)
+{
+    @await Html.PartialAsync("_VideoPartial", video)
+}
