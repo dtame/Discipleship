@@ -2,15 +2,20 @@
 @{
     ViewData["Title"] = "Study";
 }
-<div class="col-md-12">
-    <h2 style="display: inline-block;" class="pull-left">Étude de la bible</h2>
-    <form style="display:inline-block;" action="Search" method="post">
-        <input type="text" name="searchKey" placeholder="search"/>
-    </form>
-</div>
-<hr />
+    <div style="height: 500px; display: block; overflow: scroll;">
+        <div class="row container">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="width: 100%">
+                <h2 class="pull-left">Étude de la bible</h2>
+                <form action="Search" method="post" class="pull-right" style="display: inline-block;">
+                    <input type="text" name="searchKey" placeholder="search" class="form-control search" />
+                </form>
+            </div>
+        </div>
+        
+        <hr />
 
-@foreach (var video in Model.Videos)
-{
-    @await Html.PartialAsync("_VideoPartial", video)
-}
+        @foreach (var video in Model.Videos)
+        {
+            @await Html.PartialAsync("_VideoPartial", video)
+        }
+    </div>

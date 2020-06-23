@@ -1,17 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Contact";
 }
-    <div style="text-align:center">
+    <div style=" height: 500px; text-align: center; display: block;">
         <h3>@ViewData["Message"]</h3>
 
         <address>
-            Le chemin du disciple<br />
-            5615 rue Albert Pierrefonds, H9Z 2W1, QC<br />
-            <abbr title="Phone">P:</abbr>
+            <span style="font-family: 'Dancing Script', cursive; font-size: 48px;">Le chemin du disciple</span><br />            
+            <abbr title="Phone">T:</abbr>
             514.913.2380
         </address>
 
         <address>
-            <strong>Courriel:</strong> <a href="mailto:Support@example.com">infos@lechemindudisciple.com</a><br />
+            <strong>@Html.Raw("@")</strong> infos@lechemindudisciple.com<br />
+        </address>
+        <address style=" display: inline-block;">
+            <a href="https://www.facebook.com/dominique.tame"><img src="~/images/facebook_icon.png" class="img-responsive" /></a>
+            
         </address>
     </div>

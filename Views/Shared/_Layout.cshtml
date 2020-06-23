@@ -3,14 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Chemin du Chrétien</title>
-
+    <title>@ViewData["Title"] - Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="stylesheet" href="~/css/web.css" />
-        <link rel="stylesheet" href="~/css/tablet.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="~/css/customNavbar.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -18,68 +16,42 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="stylesheet" href="~/css/web.css" />
-        <link rel="stylesheet" href="~/css/tablet.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="~/css/customNavbar.css" />
     </environment>
 </head>
 <body>
-    <div class="header">
-        <div class="menuContainer">
-            <nav class="navbar">
-                <a class="navbar-brand logo" href="#">Le chemin du chrétien</a>
-                <button class="navbar-toggler test" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                <hr class="line" />
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="menu">
-                        <li class="@Html.IsActive("Home", "Index")"><a asp-area="" asp-controller="Home" asp-action="Index">Accueil</a></li>
-                        <li class="@Html.IsActive("Home", "Study")"><a asp-area="" asp-controller="Home" asp-action="Study">Étude de la bible</a></li>
-                        <li class="@Html.IsActive("Home", "Faq")"><a asp-area="" asp-controller="Home" asp-action="Faq">Questions/Réponses</a></li>
-                        <li class="@Html.IsActive("Home", "Prayer")"><a asp-area="" asp-controller="Home" asp-action="Prayer">Prières</a></li>
-                        <li class="@Html.IsActive("Home", "Contact")"><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    </ul>
-                </div>
-            </nav>
-
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Le chemin du disciple</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="@Html.IsActive("Home", "Study")"><a asp-area="" asp-controller="Home" asp-action="Study">Étude bible</a></li>
+                    @*<li class="@Html.IsActive("Home", "Faq")"><a asp-area="" asp-controller="Home" asp-action="Faq">Questions au pasteur</a></li>*@
+                    <li class="@Html.IsActive("Home", "Prayer")"><a asp-area="" asp-controller="Home" asp-action="Prayer">Prières</a></li>
+                    <li class="@Html.IsActive("Home", "Contact")"><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                </ul>
+            </div>
         </div>
+    </nav>
+
+    <partial name="_CookieConsentPartial" />
+
+    <div class="container">
+        @RenderBody()
     </div>
-
-
-    @*<nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">WandaWebAdmin</a>
-                </div>
-               <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-        </div>
-        </nav>
-
-    <partial name="_CookieConsentPartial" />*@
-    <div class="mainContainer">
-        <div class="container body-content">
-            @RenderBody()           
-        </div>
-    </div>
-    
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2020 - Chemin du Chrétien</p>
-        </div> 
+            <p class="copyrigth pull-left">&copy; 2020 - Le chemin du disciple</p>
+            <p class="about pull-right"><a asp-area="" asp-controller="Home" asp-action="About">À propos du ministère</a></p>
+        </div>
     </footer>
 
     <environment include="Development">

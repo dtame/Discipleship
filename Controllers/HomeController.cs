@@ -36,6 +36,11 @@ namespace WandaWebAdmin.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult Prayer()
         {
@@ -55,7 +60,7 @@ namespace WandaWebAdmin.Controllers
         
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Pour nous contacter:";
+            ViewData["Message"] = "Pour tous vos besoins contactez nous:";
 
             return View();
         }

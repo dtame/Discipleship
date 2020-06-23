@@ -1,25 +1,274 @@
-﻿/* Hide/rearrange for smaller screens */
-
-.carousel-caption {
-    display: none;
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 50px;
+    padding-bottom: 0;
+    background-color: #e5e5e5;
 }
 
-.largeMessage {
-    margin: 0;
-    padding: 0;
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+
+.card {
+    background-color: #fff;
+    box-shadow: 0 0 7px black;
+    margin-top: 15px;  
+}
+
+.card-icon img {
+    height: 20%;
+}
+
+.card-img {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.card img {
+    height: 100%;
     width: 100%;
-    height: 300px;
 }
 
-.logo {
-    font-family: 'Dancing Script', cursive;
-    text-align: left;
-    margin-top: 5px;
-    font-size: 14px;
-    color: black;
+a .studyLink{
+    text-decoration: none;
+}
+.caption {
+    position: absolute;
 }
 
-button.navbar-toggler .test{
-    display: normal;
+.caption-default {
+    bottom: 48px;
+    left: 35px;
 }
 
+.caption-study {
+    bottom: 4px;
+    left: 185px;
+}
+
+.caption-middle-bottom {
+    bottom: 20px;
+    left: 200px;
+}
+    .caption-study a,
+    .caption-default a,
+    .caption-middle-bottom a {
+        color: #14213d;
+        font-weight: bolder;
+        font-weight: bolder;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+        .caption-study a:hover,
+        .caption-study a:focus,
+        .caption-default a:hover,
+        .caption-default a:focus,
+        .caption-middle-bottom a:hover,
+        .caption-middle-bottom a:focus {
+            background-color: #14213d;
+            color: #fca311;
+        }
+
+    .caption a {
+        font-size: 12px;
+        font-weight: bolder;
+        color: #14213d;
+        cursor: pointer;
+    }
+
+        .caption a:hover,
+        .caption a:focus {
+            color: #fca311;
+        }
+        /* Carousel */
+        .carousel-caption p {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+.bookCaption {
+    margin-top: -30px;
+}
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+footer {
+    width: 100%;
+    display: inline-block;
+    background-color: #000;
+    color: #fff;
+    line-height: 50px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.footer {
+    height: 50px;
+    padding-top: -60px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.copyrigth {
+    display: inline-block;
+    font-size: 12px;
+}
+.about {
+    display: inline-block;
+    font-size: 12px;
+}
+    .about a {
+        text-decoration: none;
+        color: #e5e5e5;
+    }
+
+        .about a:hover,
+        .about a:focus {
+            font-weight: bold;
+            color: #fca311;
+        }
+
+        button.navbar-toggle {
+            color: #000;
+        }
+a.book-link {
+    margin-left: 240px;
+    font-size: 11px;
+    font-weight: bolder;
+    text-decoration:underline;
+    color: #fff;
+}
+    a.book-link:hover {
+        color: #fca311;
+    }
+
+.study {
+    background-image: url('../images/study.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-clip:border-box;
+}
+    /* Hide/rearrange for mobile */
+    @media screen and (max-width: 767px) {
+        /* Hide captions */
+        .carousel-caption {
+        display: none;
+        }
+
+        .about {
+            font-size: 12px;
+        }
+
+        .copyrigth {
+            font-size: 12px;
+        }
+    }
+
+    /*Hide/rearrange for tablets*/
+@media only screen and (min-width: 768px) {
+    .about {
+        font-size: 22px;
+        padding-right: 25px;
+    }
+
+    .copyrigth {
+        font-size: 22px;
+    }
+
+    .navbar{
+        font-size: 18px;
+    }
+    .navbar-brand {
+        font-size: 22px;
+    }
+
+    .caption-default {
+        bottom: 125px;
+        left: 80px;
+    }
+
+    .caption-middle-bottom {
+        bottom: 50px;
+        left: 385px;
+    }
+    .caption-study {
+        bottom: 9px;
+        left: 375px;
+    }
+    .caption a {
+        font-size: 25px;       
+    }
+    .bookCaption {
+        margin-top: -35px;
+    }
+
+    a.book-link {
+        margin-left: 500px;
+        font-size: 18px;
+    }
+}
+
+/*Hide/rearrange for laptop and large screens*/
+@media only screen and (min-width: 1025px){
+    
+    .carousel {
+        height: 500px;
+    }
+    
+    .carousel-inner .item img[src$=".png"] {
+        min-width: 100%;
+        height: 500px;
+    }
+
+    .caption-study {
+        bottom: 29px;
+        left: 83px;
+    }
+    .caption a {
+        font-size: 11px;
+    }
+    .card{
+        display: inline-block;
+        background-color:#e5e5e5;
+    }
+    .card img {
+        min-width: 85%;
+        height: 220px;
+    }
+    .caption-default {
+        bottom: 25px;
+        left: 40px;
+    }
+
+    .caption-middle-bottom {
+        bottom: 45px;
+        left: 200px;
+    }
+
+    .caption-study {
+        bottom: 19px;
+        left: 200px;
+    }
+
+    a.book-link {
+        margin-left: 840px;
+    }
+
+    .caption-study a,
+    .caption-default a,
+    .caption-middle-bottom a{
+        font-size: 14px;
+    }
+}
