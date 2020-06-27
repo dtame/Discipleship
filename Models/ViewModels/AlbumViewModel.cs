@@ -10,6 +10,7 @@ namespace WandaWebAdmin.Models.ViewModels
         public int Id { get; set; }
         public long Code { get; set; }
         public string Title { get; set; }
+        public string ErrorMessage { get; set; }
         public List<VideoViewModel> Videos { get; set; } = new List<VideoViewModel>();
     }
 }

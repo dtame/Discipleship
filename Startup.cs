@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System;
 using WandaWebAdmin.Data;
 using WandaWebAdmin.Helpers;
 using WandaWebAdmin.Models;
@@ -54,7 +56,7 @@ namespace WandaWebAdmin
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -70,6 +72,8 @@ namespace WandaWebAdmin
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            loggerFactory.AddFile($"Logs/mylogs-{DateTime.Now:ddMMyyyy}.txt");
 
             app.UseAuthentication();
             app.UseCors();

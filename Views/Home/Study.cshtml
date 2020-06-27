@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Study";
 }
-    <div style="height: 500px; display: block; overflow: scroll;">
+    <div style="height: 500px; display: block; overflow-y: auto; overflow-wrap:normal; overflow-x:hidden">
         <div class="row container">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="width: 100%">
                 <h2 class="pull-left">Étude de la bible</h2>
@@ -11,11 +11,18 @@
                 </form>*@
             </div>
         </div>
-        
-        <hr />
 
-        @foreach (var video in Model.Videos)
-        {
-            @await Html.PartialAsync("_VideoPartial", video)
+        <hr />
+        @{
+            if(Model.ErrorMessage == null ){
+                foreach (var video in Model.Videos)
+                {
+                    @await Html.PartialAsync("_VideoPartial", video)
+                }
+            }
+            else {
+                <h3>@Model.ErrorMessage</h3>
+            }
         }
+        
     </div>

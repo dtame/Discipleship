@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using WandaWebAdmin.Models;
@@ -13,10 +15,12 @@ namespace WandaWebAdmin.Controllers
     {
         private readonly IVimeoService _vimeoService;
         private readonly IEmailService _emailService;
-        public HomeController(IVimeoService vimeoService, IEmailService emailService)
+        private readonly ILogger _logger;
+        public HomeController(IVimeoService vimeoService, IEmailService emailService, ILogger<HomeController> logger)
         {
             _vimeoService = vimeoService;
             _emailService = emailService;
+            _logger = logger;
         }
 
         
@@ -27,8 +31,18 @@ namespace WandaWebAdmin.Controllers
 
         public IActionResult Study()
         {
-            var album = _vimeoService.GetAlbumsWithVideos()[1];
-            return View(album);
+            try
+            {
+                var album = _vimeoService.GetAlbumsWithVideos()[1];
+                return View(album);
+            }catch(Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                var emptyModel = new AlbumViewModel();
+                emptyModel.ErrorMessage = "Impossible de recuperer les videos.";
+                return View(emptyModel);
+            }
+            
         }
 
         public IActionResult Faq()

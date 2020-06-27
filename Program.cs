@@ -19,6 +19,11 @@ namespace WandaWebAdmin
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+            .ConfigureLogging(logBuilder =>
+            {
+                logBuilder.ClearProviders();
+                logBuilder.AddTraceSource("Information, ActivityTracing");
+            })
+            .UseStartup<Startup>();
     }
 }

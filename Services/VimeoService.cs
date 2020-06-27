@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,35 +15,46 @@ namespace WandaWebAdmin.Services
     {
         private IVimeoHelper _vimeoHelper;
         private readonly ApplicationDbContext _context;
-        public VimeoService(IVimeoHelper vimeoHelper, ApplicationDbContext context)
+        private readonly ILogger _logger;
+        public VimeoService(IVimeoHelper vimeoHelper, ApplicationDbContext context, ILogger<VimeoService> logger)
         {
             _vimeoHelper = vimeoHelper;
             _context = context;
+            _logger = logger;
         }
 
         public List<AlbumViewModel> GetAlbumsWithVideos()
         {
-            List<AlbumViewModel> result = new List<AlbumViewModel>();
-            var albums = _context.Albums.ToList();
-            foreach (var album in albums)
+            try
             {
-                AlbumViewModel albumViewModel = new AlbumViewModel
+                List<AlbumViewModel> result = new List<AlbumViewModel>();
+                var albums = _context.Albums.ToList();
+                foreach (var album in albums)
                 {
-                    Id = album.Id,
-                    Code = album.Code,
-                    Title = album.Title
-                };
+                    AlbumViewModel albumViewModel = new AlbumViewModel
+                    {
+                        Id = album.Id,
+                        Code = album.Code,
+                        Title = album.Title
+                    };
 
-                //get videos
-                var videos = _context.VideoModels.Where(x => x.AlbumId == album.Id).ToList();
-                foreach (var video in videos)
-                {
-                    var thumb = _context.Thumnails.First(x => x.VideoId == video.Id);
-                    albumViewModel.Videos.Add(video.ToViewModel(thumb));
+                    //get videos
+                    var videos = _context.VideoModels.Where(x => x.AlbumId == album.Id).ToList();
+                    foreach (var video in videos)
+                    {
+                        var thumb = _context.Thumnails.First(x => x.VideoId == video.Id);
+                        albumViewModel.Videos.Add(video.ToViewModel(thumb));
+                    }
+                    result.Add(albumViewModel);
                 }
-                result.Add(albumViewModel);
+                return result;
+
             }
-            return result;
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return new List<AlbumViewModel>();
+            }
         }
 
         public void SyncDataFromVimeo()
